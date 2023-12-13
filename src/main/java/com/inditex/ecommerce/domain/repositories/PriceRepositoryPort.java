@@ -6,5 +6,5 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PriceRepositoryPort {
-    public List<Price> find(Long brandId, Long productId, LocalDate applicationDate);
+    public List<Price> find(Integer brandId, Integer productId, LocalDate applicationDate);
 }

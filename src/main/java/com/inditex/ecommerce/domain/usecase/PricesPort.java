@@ -6,5 +6,5 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PricesPort {
-    Price search(Long brandId, Long productId, LocalDate applicationDate);
+    Price search(Integer brandId, Integer productId, LocalDate applicationDate);
 }

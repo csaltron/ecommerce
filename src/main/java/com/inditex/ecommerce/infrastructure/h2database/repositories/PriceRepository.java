@@ -22,6 +22,6 @@ public interface PriceRepository extends JpaRepository<PriceEntity, ProductEntit
 			" FROM PRICES t " +
 			"INNER JOIN BRANDS b ON t.BRAND_ID = b.BRAND_ID " +
 			"INNER JOIN PRODUCTS p ON t.PRODUCT_ID = p.PRODUCT_ID ", nativeQuery = true)
-	List<PriceEntity> find(Long brandId, Long productId, LocalDate applicationDate);
+	List<PriceEntity> find(Integer brandId, Integer productId, LocalDate applicationDate);
 
 }

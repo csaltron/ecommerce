@@ -27,7 +27,7 @@ public class PricesFinderImpl implements PricesPort {
     }
 
     @Override
-    public Price search(Long brandId, Long productId, LocalDate applicationDate) {
+    public Price search(Integer brandId, Integer productId, LocalDate applicationDate) {
         List<Price> prices = priceRepositoryPort.find(brandId, productId, applicationDate);
 
         //TODO Aqui debo seleccionar el de mayor prioridad.

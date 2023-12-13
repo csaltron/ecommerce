@@ -26,7 +26,7 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
 
     @Override
-    public List<Price> find(Long brandId, Long productId, LocalDate applicationDate) {
+    public List<Price> find(Integer brandId, Integer productId, LocalDate applicationDate) {
         List<PriceEntity> priceEntity = priceRepository.find(brandId, productId, applicationDate);
         return toPriceList(priceEntity);
 

@@ -24,8 +24,8 @@ public class PricesController {
 
     @GetMapping(path = "/search/{brandId}/{productId}/{applicationDate}")
     public ResponseEntity<PriceDTO> searchPrices(
-            @PathVariable Long brandId,
-            @PathVariable Long productId,
+            @PathVariable Integer brandId,
+            @PathVariable Integer productId,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate applicationDate
             ) {
         log.info("Test");
