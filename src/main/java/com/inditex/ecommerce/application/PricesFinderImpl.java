@@ -6,6 +6,11 @@ import com.inditex.ecommerce.infrastructure.ports.PriceRepositoryPort;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.function.Function;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 public class PricesFinder implements PricesPort {
 
@@ -20,6 +25,13 @@ public class PricesFinder implements PricesPort {
         List<Price> prices = priceRepositoryPort.find(brandId, productId, applicationDate);
 
         //TODO Aqui debo seleccionar el de mayor prioridad.
+
+        prices.stream(). collect(groupingBy(Function.identity(), TreeMap::new, toList()))
+                .lastEntry()
+                .getValue()
+                .forEach(System.out::println);
+
+
         return null;
     }
 }

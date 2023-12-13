@@ -1,36 +1,38 @@
 package com.inditex.ecommerce.rest;
 
-import com.inditex.ecommerce.application.PricesFinder;
-import com.inditex.ecommerce.domain.Price;
+import com.inditex.ecommerce.domain.usecase.PricesPort;
+import com.inditex.ecommerce.rest.dto.PriceDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Slf4j
 @RestController
 @RequestMapping(value = "/prices")
 public class PricesController {
 
-    private PricesFinder pricesFinder;
+    private final PricesPort pricesPort;
 
-    PricesController(final PricesFinder pricesFinder){
-        this.pricesFinder = pricesFinder;
+    public PricesController(final PricesPort pricesPort){
+        this.pricesPort = pricesPort;
     }
 
     @RequestMapping(value = "/search/{brandId}/{productId}/{applicationDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Price> searchPrices(
+    public ResponseEntity<PriceDTO> searchPrices(
             @PathVariable Long brandId,@PathVariable Long productId,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd hh24:mi:ss") LocalDate applicationDate
             ) {
-
-        return pricesFinder.search(brandId, productId, applicationDate);
+        log.info("Test");
+//        return pricesPort.search(brandId, productId, applicationDate);
+        PriceDTO priceDTO = PriceDTO.builder().build();
+        return ResponseEntity.ok().body(priceDTO);
 
 
     }
