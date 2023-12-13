@@ -19,10 +19,6 @@ public class PriceEntity {
     @Column(name = "PRICE_ID")
     private Long priceId;
 
-//    private ProductEntity productEntity;
-//
-//    private BrandEntity brandEntity;
-
     @Column(name = "PRODUCT_ID")
     private Long productId;
 
