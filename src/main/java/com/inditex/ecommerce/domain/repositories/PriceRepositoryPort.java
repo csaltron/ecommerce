@@ -1,6 +1,6 @@
-package com.inditex.ecommerce.infrastructure.ports;
+package com.inditex.ecommerce.domain.repositories;
 
-import com.inditex.ecommerce.domain.Price;
+import com.inditex.ecommerce.domain.entities.Price;
 
 import java.time.LocalDate;
 import java.util.List;

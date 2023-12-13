@@ -1,4 +1,4 @@
-package com.inditex.ecommerce.domain;
+package com.inditex.ecommerce.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

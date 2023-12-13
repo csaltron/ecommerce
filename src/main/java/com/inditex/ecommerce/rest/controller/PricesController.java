@@ -1,5 +1,6 @@
-package com.inditex.ecommerce.rest;
+package com.inditex.ecommerce.rest.controller;
 
+import com.inditex.ecommerce.domain.entities.Price;
 import com.inditex.ecommerce.domain.usecase.PricesPort;
 import com.inditex.ecommerce.rest.dto.PriceDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +31,8 @@ public class PricesController {
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd hh24:mi:ss") LocalDate applicationDate
             ) {
         log.info("Test");
-//        return pricesPort.search(brandId, productId, applicationDate);
-        PriceDTO priceDTO = PriceDTO.builder().build();
+        Price price = pricesPort.search(brandId, productId, applicationDate);
+        PriceDTO priceDTO = PriceDTO.builder().price(price.getPrice()).build();
         return ResponseEntity.ok().body(priceDTO);
 
 

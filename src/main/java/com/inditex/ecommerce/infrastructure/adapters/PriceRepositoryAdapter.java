@@ -1,11 +1,11 @@
 package com.inditex.ecommerce.infrastructure.adapters;
 
-import com.inditex.ecommerce.domain.Brand;
-import com.inditex.ecommerce.domain.Price;
-import com.inditex.ecommerce.domain.Product;
+import com.inditex.ecommerce.domain.entities.Brand;
+import com.inditex.ecommerce.domain.entities.Price;
+import com.inditex.ecommerce.domain.entities.Product;
 import com.inditex.ecommerce.infrastructure.h2database.entities.PriceEntity;
 import com.inditex.ecommerce.infrastructure.h2database.repositories.PriceRepository;
-import com.inditex.ecommerce.infrastructure.ports.PriceRepositoryPort;
+import com.inditex.ecommerce.domain.repositories.PriceRepositoryPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
