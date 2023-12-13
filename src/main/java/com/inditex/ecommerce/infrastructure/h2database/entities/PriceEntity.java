@@ -1,22 +1,33 @@
 package com.inditex.ecommerce.infrastructure.h2database.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-
-import java.io.Serializable;
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "PRICES")
-public class PriceEntity implements Serializable {
+@Entity(name = "PRICES")
+public class PriceEntity {
 
-    private ProductEntity productEntity;
-    private BrandEntity brandEntity;
+    @Id
+    @Column(name = "PRICE_ID")
+    private Long priceId;
+
+//    private ProductEntity productEntity;
+//
+//    private BrandEntity brandEntity;
+
+    @Column(name = "PRODUCT_ID")
+    private Long productId;
+
+    @Column(name = "BRAND_ID")
+    private Long brandId;
 
     @Column(name = "START_DATE")
     private LocalDate startDate;

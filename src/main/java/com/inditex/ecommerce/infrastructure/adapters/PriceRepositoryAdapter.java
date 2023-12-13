@@ -3,21 +3,20 @@ package com.inditex.ecommerce.infrastructure.adapters;
 import com.inditex.ecommerce.domain.entities.Brand;
 import com.inditex.ecommerce.domain.entities.Price;
 import com.inditex.ecommerce.domain.entities.Product;
+import com.inditex.ecommerce.domain.repositories.PriceRepositoryPort;
 import com.inditex.ecommerce.infrastructure.h2database.entities.PriceEntity;
 import com.inditex.ecommerce.infrastructure.h2database.repositories.PriceRepository;
-import com.inditex.ecommerce.domain.repositories.PriceRepositoryPort;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Repository
 public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(PriceRepositoryAdapter.class);
+
 
     private final PriceRepository priceRepository;
 
@@ -33,17 +32,17 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
     }
 
-    private List<Price> toPriceList(List<PriceEntity> priceEntity) {
-        List<Price> pricesList = priceEntity.stream()
+    private List<Price> toPriceList(@NotNull List<PriceEntity> priceEntity) {
+        return priceEntity.stream()
                 .map(pricesEntity -> Price.builder()
                         .product(Product.builder()
-                                .id(pricesEntity.getProductEntity().getProductId())
-                                .name(pricesEntity.getProductEntity().getName())
-                                .description(pricesEntity.getProductEntity().getDescription())
+                                .id(pricesEntity.getProductId())
+//                                .name(pricesEntity.getProductEntity().getName())
+//                                .description(pricesEntity.getProductEntity().getDescription())
                                 .build())
                         .brand(Brand.builder()
-                                .id(pricesEntity.getBrandEntity().getBrandId())
-                                .name(pricesEntity.getBrandEntity().getName())
+                                .id(pricesEntity.getBrandId())
+//                                .name(pricesEntity.getBrandEntity().getName())
                                 .build())
                         .startDate(pricesEntity.getStartDate())
                         .endDate(pricesEntity.getEndDate())
@@ -53,6 +52,5 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
                         .curr(pricesEntity.getCurr())
                         .build())
                 .collect(Collectors.toList());
-        return pricesList;
     }
 }

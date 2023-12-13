@@ -3,21 +3,20 @@ package com.inditex.ecommerce.infrastructure.h2database.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@Table(name = "BRANDS")
-public class BrandEntity {
+import java.io.Serializable;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "BRANDS")
+public class BrandEntity implements Serializable {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "BRAND_ID")
-    Long brandId;
+    private Long brandId;
 
     @Column (name = "BRAND_NAME")
-    String name;
+    private String name;
 
 }

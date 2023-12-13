@@ -3,14 +3,14 @@ package com.inditex.ecommerce.infrastructure.h2database.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Builder
-@NoArgsConstructor
+import java.io.Serializable;
+
+@Data
+@ToString
 @AllArgsConstructor
-@Getter
-@Setter
-@Table(name = "PRODUCTS")
-public class ProductEntity {
+@NoArgsConstructor
+@Entity(name = "PRODUCTS")
+public class ProductEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
