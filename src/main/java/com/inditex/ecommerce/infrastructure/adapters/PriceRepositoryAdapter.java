@@ -1,13 +1,13 @@
-package com.inditex.ecommerce.infrastructure.h2database;
+package com.inditex.ecommerce.infrastructure.adapters;
 
 import com.inditex.ecommerce.domain.Brand;
 import com.inditex.ecommerce.domain.Price;
 import com.inditex.ecommerce.domain.Product;
 import com.inditex.ecommerce.infrastructure.h2database.entities.PriceEntity;
 import com.inditex.ecommerce.infrastructure.h2database.repositories.PriceRepository;
+import com.inditex.ecommerce.infrastructure.ports.PriceRepositoryPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -19,9 +19,11 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(PriceRepositoryAdapter.class);
 
-    @Autowired
-    private PriceRepository priceRepository;
+    private final PriceRepository priceRepository;
 
+    public PriceRepositoryAdapter(PriceRepository priceRepository) {
+        this.priceRepository = priceRepository;
+    }
 
 
     @Override
@@ -53,25 +55,4 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
                 .collect(Collectors.toList());
         return pricesList;
     }
-
-//    private List<PriceDTO> toPriceList(List<PriceEntity> priceEntity) {
-//        List<PriceDTO> pricesList = priceEntity.stream()
-//                .map(pricesEntity -> PriceDTO.builder()
-//                        .productId(pricesEntity.getProductEntity()
-//                                .productId)
-//                        .brandId(pricesEntity.getBrandEntity()
-//                                .getBrandId())
-//                        .startDate(pricesEntity.getStartDate())
-//                        .endDate(pricesEntity.getEndDate())
-//                        .priceList(pricesEntity.getPriceList())
-//                        .price(pricesEntity.getPrice())
-//                        .priority(pricesEntity.getPriority())
-//                        .curr(pricesEntity.getCurr())
-//                        .build())
-//                .collect(Collectors.toList());
-//        return pricesList;
-//    }
-
-
-
 }

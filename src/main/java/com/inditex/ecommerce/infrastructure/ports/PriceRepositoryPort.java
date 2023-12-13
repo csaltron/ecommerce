@@ -1,4 +1,4 @@
-package com.inditex.ecommerce.infrastructure.h2database;
+package com.inditex.ecommerce.infrastructure.ports;
 
 import com.inditex.ecommerce.domain.Price;
 
