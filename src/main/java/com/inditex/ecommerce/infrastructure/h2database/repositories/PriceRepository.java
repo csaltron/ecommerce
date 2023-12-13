@@ -1,6 +1,7 @@
-package com.inditex.ecommerce.infrastructure.h2database;
+package com.inditex.ecommerce.infrastructure.h2database.repositories;
 
 
+import com.inditex.ecommerce.infrastructure.h2database.entities.PriceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.inditex.ecommerce.infrastructure.h2database;
+package com.inditex.ecommerce.infrastructure.h2database.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

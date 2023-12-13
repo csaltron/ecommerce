@@ -3,6 +3,8 @@ package com.inditex.ecommerce.infrastructure.h2database;
 import com.inditex.ecommerce.domain.Brand;
 import com.inditex.ecommerce.domain.Price;
 import com.inditex.ecommerce.domain.Product;
+import com.inditex.ecommerce.infrastructure.h2database.entities.PriceEntity;
+import com.inditex.ecommerce.infrastructure.h2database.repositories.PriceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +35,13 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
         List<Price> pricesList = priceEntity.stream()
                 .map(pricesEntity -> Price.builder()
                         .product(Product.builder()
-                                .id(pricesEntity.getProductEntity().productId)
-                                .name(pricesEntity.getProductEntity().name)
-                                .description(pricesEntity.getProductEntity().description)
+                                .id(pricesEntity.getProductEntity().getProductId())
+                                .name(pricesEntity.getProductEntity().getName())
+                                .description(pricesEntity.getProductEntity().getDescription())
                                 .build())
                         .brand(Brand.builder()
-                                .id(pricesEntity.getBrandEntity().brandId)
-                                .name(pricesEntity.getBrandEntity().name)
+                                .id(pricesEntity.getBrandEntity().getBrandId())
+                                .name(pricesEntity.getBrandEntity().getName())
                                 .build())
                         .startDate(pricesEntity.getStartDate())
                         .endDate(pricesEntity.getEndDate())

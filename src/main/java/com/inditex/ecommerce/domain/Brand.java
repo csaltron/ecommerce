@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Brand {
-    Long id;
-    String name;
+    private Long id;
+    private String name;
 }
