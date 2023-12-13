@@ -29,7 +29,6 @@ public class PriceRepositoryAdapterTest {
 
     @Test
     void findWhenQueryValidValuesExpectedListPrices(){
-
         Integer brandId = 1;
         Integer productId = 1;
         LocalDate currentDate = LocalDate.parse("2020-12-13");
@@ -43,7 +42,10 @@ public class PriceRepositoryAdapterTest {
         when(this.priceRepository.find(brandId, productId, currentDate)).thenReturn(pricesEntities);
 
         List<Price> expectedResponse = new ArrayList<>();
-        Price priceExpected = Price.builder().brand(Brand.builder().id(1L).build()).product(Product.builder()
+        Price priceExpected = Price.builder()
+                .brand(Brand.builder()
+                        .id(1L).build())
+                .product(Product.builder()
                 .build()).price(200.0).build();
         expectedResponse.add(priceExpected);
 
