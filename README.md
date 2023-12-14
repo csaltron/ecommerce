@@ -42,7 +42,6 @@ Desarrollar unos test al endpoint rest que  validen las siguientes peticiones al
 -          Test 4: petición a las 10:00 del día 15 del producto 35455   para la brand 1 (ZARA)
 -          Test 5: petición a las 21:00 del día 16 del producto 35455   para la brand 1 (ZARA)
 
-
 ## Arquitectura
 
 ---
@@ -58,7 +57,6 @@ Las implementaciones de esos puertos se hacen a través de los adaptadores, que 
 
 ![Diagrama.png](doc%2FDiagrama.png)
 
-- **Java package**: El uso de packages debe tener la arquitectura hexagonal, y además, contener un package base con la siguiente nomenclatura: com.latam + it element + característica del componente.
 
 # Instrucciones
 
