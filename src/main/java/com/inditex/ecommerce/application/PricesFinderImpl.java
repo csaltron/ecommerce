@@ -26,7 +26,6 @@ public class PricesFinderImpl implements PricesPort {
 
     @Override
     public Price search(Integer brandId, Integer productId, LocalDateTime applicationDate) {
-        //TODO eliminar salidas system
         List<Price> prices = priceRepositoryPort.find(brandId, productId, applicationDate);
         for (Price price : prices) {
             log.info (String.valueOf(price));

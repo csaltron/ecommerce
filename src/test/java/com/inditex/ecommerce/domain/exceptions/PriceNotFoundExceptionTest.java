@@ -23,7 +23,7 @@ class PriceNotFoundExceptionTest {
     void checkPriceNotFoundExceptionTest() {
         final EcommerceExceptionHandler apiExceptionHandler = new EcommerceExceptionHandler();
         final String errorMessage = "Error message";
-        final ResponseEntity<ApiError> apiErrorResponseEntity = apiExceptionHandler.handleNotFound(new PriceNotFoundException(errorMessage));
+        final ResponseEntity<ApiError> apiErrorResponseEntity = apiExceptionHandler.handleNotFound(new   PriceNotFoundException(errorMessage));
         assertThat(Objects.requireNonNull(apiErrorResponseEntity.getBody()).getMessage()).isEqualTo(errorMessage);
     }
 }

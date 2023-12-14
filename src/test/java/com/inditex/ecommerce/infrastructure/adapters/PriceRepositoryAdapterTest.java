@@ -31,7 +31,7 @@ class PriceRepositoryAdapterTest {
     void findWhenQueryValidValuesExpectedListPrices(){
         Integer brandId = 1;
         Integer productId = 35455;
-        LocalDateTime currentDate = LocalDateTime.parse("2020-07-01");
+        LocalDateTime currentDate = LocalDateTime.of(2020, 7, 1, 0, 0);
 
         PriceEntity price = new PriceEntity();
         price.setBrandId((1L));
@@ -41,8 +41,8 @@ class PriceRepositoryAdapterTest {
         price.setPrice(200.0);
         price.setPriority(0);
         price.setProductId(35455L);
-        price.setStartDate(LocalDateTime.parse("2020-01-01"));
-        price.setEndDate(LocalDateTime.parse("2020-12-31"));
+        price.setStartDate(LocalDateTime.of(2020, 1, 1, 0, 0));
+        price.setEndDate(LocalDateTime.of(2020, 12, 1, 0, 0));
 
 
         List<PriceEntity> pricesEntities = List.of(price);
@@ -63,8 +63,8 @@ class PriceRepositoryAdapterTest {
                 .curr("EUR")
                 .amount(200.0)
                 .priority(0)
-                .startDate(LocalDateTime.parse("2020-01-01"))
-                .endDate(LocalDateTime.parse("2020-12-31")).build();
+                .startDate(LocalDateTime.of(2020, 1, 1, 0, 0))
+                .endDate(LocalDateTime.of(2020, 12, 1, 0, 0)).build();
         expectedResponse.add(priceExpected);
 
         // Test
