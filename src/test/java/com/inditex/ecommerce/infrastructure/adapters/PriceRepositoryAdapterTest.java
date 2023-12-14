@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,29 +31,45 @@ public class PriceRepositoryAdapterTest {
     @Test
     void findWhenQueryValidValuesExpectedListPrices(){
         Integer brandId = 1;
-        Integer productId = 1;
-        LocalDate currentDate = LocalDate.parse("2020-12-13");
+        Integer productId = 35455;
+        LocalDateTime currentDate = LocalDateTime.parse("2020-07-01");
 
         PriceEntity price = new PriceEntity();
-        price.setPrice(200.0);
         price.setBrandId((1L));
-        price.setPriceId(411L);
+        price.setPriceId(1L);
+        price.setPriceList(1D);
+        price.setCurr("EUR");
+        price.setPrice(200.0);
+        price.setPriority(0);
+        price.setProductId(35455L);
+        price.setStartDate(LocalDateTime.parse("2020-01-01"));
+        price.setEndDate(LocalDateTime.parse("2020-12-31"));
+
+
         List<PriceEntity> pricesEntities = List.of(price);
 
-        when(this.priceRepository.find(brandId, productId, currentDate)).thenReturn(pricesEntities);
+        when(priceRepository
+                .find(brandId, productId, currentDate))
+                .thenReturn(pricesEntities);
 
         List<Price> expectedResponse = new ArrayList<>();
         Price priceExpected = Price.builder()
+                .priceId(1L)
+                .priceList(1D)
                 .brand(Brand.builder()
                         .id(1L).build())
                 .product(Product.builder()
-                .build()).price(200.0).build();
+                        .id(35455L)
+                .build())
+                .curr("EUR")
+                .price(200.0)
+                .priority(0)
+                .startDate(LocalDateTime.parse("2020-01-01"))
+                .endDate(LocalDateTime.parse("2020-12-31")).build();
         expectedResponse.add(priceExpected);
 
         // Test
         List<Price> pricesList = priceRepositoryAdapter.find(brandId, productId, currentDate);
-
-
         assertEquals(expectedResponse, pricesList);
     }
 

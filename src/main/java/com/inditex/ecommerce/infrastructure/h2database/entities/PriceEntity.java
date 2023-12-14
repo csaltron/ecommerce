@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @ToString
@@ -26,10 +27,10 @@ public class PriceEntity {
     private Long brandId;
 
     @Column(name = "START_DATE")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     @Column(name = "END_DATE")
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
     @Column(name = "PRICE_LIST")
     private Double priceList;

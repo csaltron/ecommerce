@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
 
     @Override
-    public List<Price> find(Integer brandId, Integer productId, LocalDate applicationDate) {
+    public List<Price> find(Integer brandId, Integer productId, LocalDateTime applicationDate) {
         List<PriceEntity> priceEntity = priceRepository.find(brandId, productId, applicationDate);
         return toPriceList(priceEntity);
 
@@ -35,6 +36,7 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
     private List<Price> toPriceList(@NotNull List<PriceEntity> priceEntity) {
         return priceEntity.stream()
                 .map(pricesEntity -> Price.builder()
+                        .priceId(pricesEntity.getPriceId())
                         .product(Product.builder()
                                 .id(pricesEntity.getProductId())
 //                                .name(pricesEntity.getProductEntity().getName())
