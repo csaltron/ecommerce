@@ -1,10 +1,10 @@
 package com.inditex.ecommerce.rest.controller;
 
 import com.inditex.ecommerce.domain.entities.Price;
+import com.inditex.ecommerce.domain.exceptions.PriceNotFoundException;
 import com.inditex.ecommerce.domain.usecase.PricesPort;
-import com.inditex.ecommerce.rest.dto.BrandDTO;
 import com.inditex.ecommerce.rest.dto.PriceDTO;
-import com.inditex.ecommerce.rest.dto.ProductDTO;
+import com.inditex.ecommerce.rest.mapper.PriceDTOMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +23,11 @@ public class PricesController {
     private final PricesPort pricesPort;
 
 
-    public PricesController(final PricesPort pricesPort){
+    private final PriceDTOMapper priceDTOMapper;
+
+    public PricesController(final PricesPort pricesPort, PriceDTOMapper priceDTOMapper){
         this.pricesPort = pricesPort;
+        this.priceDTOMapper = priceDTOMapper;
     }
 
     @GetMapping(path = "/prices")
@@ -32,30 +35,10 @@ public class PricesController {
             @RequestParam Integer brandId,
             @RequestParam Integer productId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime applicationDate
-            ) {
-        log.info("Test");
+            ) throws PriceNotFoundException {
+        log.info("Get method search");
         Price price = pricesPort.search(brandId, productId, applicationDate);
-        PriceDTO priceDTO = PriceDTO.builder()
-                .price(price.getAmount())
-                .brand(BrandDTO.builder()
-                        .id(price.getBrand().getId())
-                        .name(price.getProduct().getName())
-                        .build())
-                .product(ProductDTO.builder()
-                        .id(price.getProduct().getId())
-                        .name(price.getProduct().getName())
-                        .build())
-                .curr(price.getCurr())
-                .priority(price.getPriority())
-                .priceList(price.getPriceList())
-                .startDate(price.getStartDate().toLocalDate())
-                .endDate(price.getEndDate().toLocalDate())
-                .build();
-
-
-
+        PriceDTO priceDTO = priceDTOMapper.toPriceDto(price);
         return ResponseEntity.ok().body(priceDTO);
-
-
     }
 }
