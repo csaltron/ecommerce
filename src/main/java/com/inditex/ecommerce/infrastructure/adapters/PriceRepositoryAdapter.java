@@ -1,17 +1,14 @@
 package com.inditex.ecommerce.infrastructure.adapters;
 
-import com.inditex.ecommerce.domain.entities.Brand;
 import com.inditex.ecommerce.domain.entities.Price;
-import com.inditex.ecommerce.domain.entities.Product;
 import com.inditex.ecommerce.domain.repositories.PriceRepositoryPort;
 import com.inditex.ecommerce.infrastructure.h2database.entities.PriceEntity;
 import com.inditex.ecommerce.infrastructure.h2database.repositories.PriceRepository;
-import org.jetbrains.annotations.NotNull;
+import com.inditex.ecommerce.infrastructure.mapper.PriceMapper;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 public class PriceRepositoryAdapter implements PriceRepositoryPort {
@@ -20,35 +17,18 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
     private final PriceRepository priceRepository;
 
-    public PriceRepositoryAdapter(PriceRepository priceRepository) {
+    private final PriceMapper priceMapper;
+
+    public PriceRepositoryAdapter(PriceRepository priceRepository, PriceMapper priceMapper) {
         this.priceRepository = priceRepository;
+        this.priceMapper = priceMapper;
     }
 
 
     @Override
     public List<Price> find(Integer brandId, Integer productId, LocalDateTime applicationDate) {
         List<PriceEntity> priceEntity = priceRepository.find(brandId, productId, applicationDate);
-        return toPriceList(priceEntity);
-
+        return priceMapper.toPrices(priceEntity);
     }
 
-    private List<Price> toPriceList(@NotNull List<PriceEntity> priceEntity) {
-        return priceEntity.stream()
-                .map(pricesEntity -> Price.builder()
-                        .priceId(pricesEntity.getPriceId())
-                        .product(Product.builder()
-                                .id(pricesEntity.getProductId())
-                                .build())
-                        .brand(Brand.builder()
-                                .id(pricesEntity.getBrandId())
-                                .build())
-                        .startDate(pricesEntity.getStartDate())
-                        .endDate(pricesEntity.getEndDate())
-                        .priceList(pricesEntity.getPriceList())
-                        .amount(pricesEntity.getPrice())
-                        .priority(pricesEntity.getPriority())
-                        .curr(pricesEntity.getCurr())
-                        .build())
-                .collect(Collectors.toList());
-    }
 }

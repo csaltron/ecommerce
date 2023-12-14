@@ -1,6 +1,7 @@
 package com.inditex.ecommerce.application;
 
 import com.inditex.ecommerce.domain.entities.Price;
+import com.inditex.ecommerce.domain.exceptions.PriceNotFoundException;
 import com.inditex.ecommerce.domain.repositories.PriceRepositoryPort;
 import com.inditex.ecommerce.domain.usecase.PricesPort;
 import lombok.extern.slf4j.Slf4j;
@@ -27,17 +28,11 @@ public class PricesFinderImpl implements PricesPort {
     @Override
     public Price search(Integer brandId, Integer productId, LocalDateTime applicationDate) {
         List<Price> prices = priceRepositoryPort.find(brandId, productId, applicationDate);
-        for (Price price : prices) {
-            log.info (String.valueOf(price));
-        }
         Optional<Price> first = prices.stream()
                 .max(Comparator.comparing(Price::getPriority));
-        if(first.isPresent()){
-            log.info ("el precio actual es: " + first.get());
-            return first.get();
+        if(first.isEmpty()){
+            throw new PriceNotFoundException("Not Found");
         }
-        return Price.builder().build();
-
-
+       return first.get();
     }
 }

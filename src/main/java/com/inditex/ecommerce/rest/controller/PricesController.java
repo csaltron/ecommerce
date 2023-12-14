@@ -1,9 +1,10 @@
 package com.inditex.ecommerce.rest.controller;
 
 import com.inditex.ecommerce.domain.entities.Price;
+import com.inditex.ecommerce.domain.exceptions.PriceNotFoundException;
 import com.inditex.ecommerce.domain.usecase.PricesPort;
 import com.inditex.ecommerce.rest.dto.PriceDTO;
-import com.inditex.ecommerce.rest.mapper.PriceMapper;
+import com.inditex.ecommerce.rest.mapper.PriceDTOMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,11 @@ public class PricesController {
     private final PricesPort pricesPort;
 
 
-    private final PriceMapper priceMapper;
+    private final PriceDTOMapper priceDTOMapper;
 
-    public PricesController(final PricesPort pricesPort, PriceMapper priceMapper){
+    public PricesController(final PricesPort pricesPort, PriceDTOMapper priceDTOMapper){
         this.pricesPort = pricesPort;
-        this.priceMapper = priceMapper;
+        this.priceDTOMapper = priceDTOMapper;
     }
 
     @GetMapping(path = "/prices")
@@ -34,13 +35,10 @@ public class PricesController {
             @RequestParam Integer brandId,
             @RequestParam Integer productId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime applicationDate
-            ) {
-        log.info("Test");
+            ) throws PriceNotFoundException {
+        log.info("Get method search");
         Price price = pricesPort.search(brandId, productId, applicationDate);
-        PriceDTO priceDTO = priceMapper.toPriceDto(price);
-
+        PriceDTO priceDTO = priceDTOMapper.toPriceDto(price);
         return ResponseEntity.ok().body(priceDTO);
-
-
     }
 }

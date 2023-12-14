@@ -5,10 +5,12 @@ import com.inditex.ecommerce.domain.entities.Price;
 import com.inditex.ecommerce.domain.entities.Product;
 import com.inditex.ecommerce.infrastructure.h2database.entities.PriceEntity;
 import com.inditex.ecommerce.infrastructure.h2database.repositories.PriceRepository;
+import com.inditex.ecommerce.infrastructure.mapper.PriceMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
@@ -26,6 +28,9 @@ class PriceRepositoryAdapterTest {
 
     @Mock
     private PriceRepository priceRepository;
+
+    @Spy
+    private PriceMapper priceMapper;
 
     @Test
     void findWhenQueryValidValuesExpectedListPrices(){
