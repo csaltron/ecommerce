@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Builder
@@ -20,6 +19,6 @@ public class Price {
     private LocalDateTime endDate;
     private Double priceList;
     private Integer priority;
-    private Double price;
+    private Double amount;
     private String curr;
 }

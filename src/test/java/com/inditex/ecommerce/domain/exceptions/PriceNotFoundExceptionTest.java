@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @WebAppConfiguration
 @ContextConfiguration(classes = {
         EcommerceExceptionHandler.class})
-public class PriceNotFoundExceptionTest {
+class PriceNotFoundExceptionTest {
 
     @Test
     void checkPriceNotFoundExceptionTest() {

@@ -4,16 +4,12 @@ import com.inditex.ecommerce.domain.entities.Brand;
 import com.inditex.ecommerce.domain.entities.Price;
 import com.inditex.ecommerce.domain.entities.Product;
 import com.inditex.ecommerce.domain.repositories.PriceRepositoryPort;
-import com.inditex.ecommerce.domain.usecase.PricesPort;
-import com.inditex.ecommerce.infrastructure.h2database.entities.PriceEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.Answer;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class PricesFinderImplTest {
+class PricesFinderImplTest {
     @InjectMocks
     private PricesFinderImpl pricesFinder;
 
@@ -42,7 +38,7 @@ public class PricesFinderImplTest {
                 .priceId(1L)
                 .priceList(1D)
                 .curr("EUR")
-                .price(200.0)
+                .amount(200.0)
                 .priority(1)
                 .product(Product.builder()
                         .id(35455L)
@@ -56,7 +52,7 @@ public class PricesFinderImplTest {
                 .priceId(1L)
                 .priceList(1D)
                 .curr("EUR")
-                .price(200.0)
+                .amount(200.0)
                 .priority(2)
                 .product(Product.builder()
                         .id(35455L)
@@ -70,7 +66,7 @@ public class PricesFinderImplTest {
                 .priceId(1L)
                 .priceList(1D)
                 .curr("EUR")
-                .price(200.0)
+                .amount(200.0)
                 .priority(2)
                 .product(Product.builder()
                         .id(35455L)

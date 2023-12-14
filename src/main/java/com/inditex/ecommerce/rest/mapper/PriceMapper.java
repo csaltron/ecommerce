@@ -12,7 +12,7 @@ public interface PriceMapper {
         //TODO Completar campos
         return PriceDTO
                 .builder()
-                .price(price.getPrice())
+                .price(price.getAmount())
                 .brand(BrandDTO.builder().id(price.getBrand().getId()).build())
                 .build();
     }

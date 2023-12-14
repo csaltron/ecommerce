@@ -1,7 +1,5 @@
 package com.inditex.ecommerce.rest.dto;
 
-import com.inditex.ecommerce.domain.entities.Brand;
-import com.inditex.ecommerce.domain.entities.Product;
 import lombok.Builder;
 import lombok.Data;
 

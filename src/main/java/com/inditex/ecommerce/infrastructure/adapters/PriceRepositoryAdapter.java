@@ -9,7 +9,6 @@ import com.inditex.ecommerce.infrastructure.h2database.repositories.PriceReposit
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,7 +48,7 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
                         .startDate(pricesEntity.getStartDate())
                         .endDate(pricesEntity.getEndDate())
                         .priceList(pricesEntity.getPriceList())
-                        .price(pricesEntity.getPrice())
+                        .amount(pricesEntity.getPrice())
                         .priority(pricesEntity.getPriority())
                         .curr(pricesEntity.getCurr())
                         .build())

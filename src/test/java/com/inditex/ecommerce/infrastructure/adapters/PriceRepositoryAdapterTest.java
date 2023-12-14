@@ -11,7 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class PriceRepositoryAdapterTest {
+class PriceRepositoryAdapterTest {
 
     @InjectMocks
     private PriceRepositoryAdapter priceRepositoryAdapter;
@@ -62,7 +61,7 @@ public class PriceRepositoryAdapterTest {
                         .id(35455L)
                 .build())
                 .curr("EUR")
-                .price(200.0)
+                .amount(200.0)
                 .priority(0)
                 .startDate(LocalDateTime.parse("2020-01-01"))
                 .endDate(LocalDateTime.parse("2020-12-31")).build();
