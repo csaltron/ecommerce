@@ -48,7 +48,7 @@ Desarrollar unos test al endpoint rest que  validen las siguientes peticiones al
 Esta aplicación cuenta con una arquitectura hexagonal. La cual cuenta con tres capas
 - **Capa de Infraestructura**: es la capa responsable del funcionamiento de la aplicación (configuraciones, conexiones a recursos externos)
 - **Capa de Aplicacion**: es la capa encargada de implementar los puntos de entrada a la aplicación.
-- **Capa de Dominio**: es la capa encargada de implementar el modelo y la lógica de negocio
+- **Capa de Dominio**: es la capa encargada de implementar el modelo y la lógica de negocio.
 
 
 Las capas se comunican a traves de los puertos, que son interfaces de java, ejemplo PriceRepositoryPort
@@ -57,6 +57,9 @@ Las implementaciones de esos puertos se hacen a través de los adaptadores, que 
 
 ![Diagrama.png](doc%2FDiagrama.png)
 
+Estructura de paquetes del proyecto:
+
+![](doc/Estructura.png)
 
 # Instrucciones
 
