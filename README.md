@@ -42,20 +42,43 @@ Desarrollar unos test al endpoint rest que  validen las siguientes peticiones al
 -          Test 4: petición a las 10:00 del día 15 del producto 35455   para la brand 1 (ZARA)
 -          Test 5: petición a las 21:00 del día 16 del producto 35455   para la brand 1 (ZARA)
 
+
+## Arquitectura
+
+---
+Esta aplicación cuenta con una arquitectura hexagonal. La cual cuenta con tres capas
+- **Capa de Infraestructura**: es la capa responsable del funcionamiento de la aplicación (configuraciones, conexiones a recursos externos)
+- **Capa de Aplicacion**: es la capa encargada de implementar los puntos de entrada a la aplicación.
+- **Capa de Dominio**: es la capa encargada de implementar el modelo y la lógica de negocio
+
+
+Las capas se comunican a traves de los puertos, que son interfaces de java, ejemplo PriceRepositoryPort
+
+Las implementaciones de esos puertos se hacen a través de los adaptadores, que son las clases concretas, ejemplo: PriceRepositoryAdapter
+
+![Diagrama.png](doc%2FDiagrama.png)
+
+- **Java package**: El uso de packages debe tener la arquitectura hexagonal, y además, contener un package base con la siguiente nomenclatura: com.latam + it element + característica del componente.
+
 # Instrucciones
 
 ## 1.- Descargar Proyecto a través de Git
 
 	 git clone https://github.com/csaltron/ecommerce
 	 
-## 2.- Compilar y generar el ensamblado
+## 2.- Compilar y generar el ensamblado usando maven
 	
 
 	   
-## 3.- Ejecutar
-	 
+## 3.- Ejecutar test de integración
+EcommerceApplicationTests
+
+Java class: com.inditex.ecommerce.EcommerceApplicationTests
 
 
 ## 4.- Probar API:
+Run API
+
+Example: http://localhost:8090/api/v1/prices?brandId=1&productId=35455&applicationDate=2020-06-15T10:00:00
 
 	
