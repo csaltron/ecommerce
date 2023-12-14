@@ -3,6 +3,7 @@ package com.inditex.ecommerce.application;
 import com.inditex.ecommerce.domain.entities.Brand;
 import com.inditex.ecommerce.domain.entities.Price;
 import com.inditex.ecommerce.domain.entities.Product;
+import com.inditex.ecommerce.domain.exceptions.PriceNotFoundException;
 import com.inditex.ecommerce.domain.repositories.PriceRepositoryPort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,8 +14,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -88,6 +91,23 @@ class PricesFinderImplTest {
 
         assertEquals(priceResult, pricePriority);
 
+
+    }
+
+    @Test
+    void whenPricesNotFound(){
+        Integer brandId = 1;
+        Integer productId = 9999;
+        LocalDateTime currentDate = LocalDateTime.of(1900, 01, 01, 0, 0);
+        List<Price> prices = new ArrayList<>();
+
+        when(priceRepositoryPort
+                .find(brandId,productId,currentDate))
+                .thenReturn(prices);
+
+        assertThrows(PriceNotFoundException.class, () -> {
+            pricesFinder.search(brandId, productId, currentDate);
+        });
 
     }
 
